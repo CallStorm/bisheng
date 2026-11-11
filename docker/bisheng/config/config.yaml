@@ -28,11 +28,12 @@ database_pool:
 
 # Desktop deployment: set the public origin once for login, Chat and Work tools.
 # Use the address entered in the client, including its public port when present.
-# Example: https://work.example.com or http://192.0.2.15:18081
+# The committed default is loopback. A host-specific public URL belongs only in
+# that machine's copy of this file; see docker/PORTS.md.
 # Enable this section with a Desktop-compatible backend image.
-# dsh:
-#   enabled: true
-#   platform_public_url: https://work.example.com
+dsh:
+  enabled: true
+  platform_public_url: http://127.0.0.1:3001
 
 # 缓存配置  redis://[[username]:[password]]@localhost:6379/0
 # 如果设置了密码，需要参考MySQL密码的加密逻辑对密码进行加密。eg: redis://root:gAAAAABlp4b4c59FeVGF_OQRVf6NOUIGdxq8246EBD-b0hdK_jVKRs1x4PoAn0A6C5S6IiFKmWn0Nm5eBUWu-7jxcqw6TiVjQA==@redis:6379/0
