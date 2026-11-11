@@ -36,6 +36,8 @@ MinIO 默认账号密码为 `minioadmin/minioadmin`，MySQL 沿用 `1234`。数�
 
 端口和资源需要满足 Compose 配置；Elasticsearch 的宿主机配置、外部模型及文档服务按实际环境准备。首次启动后仍需注册用户、配置模型。
 
+共享 `docker-compose.yml` 的发布端口不要改。某台机器端口被占用时，把 `docker-compose.override.example.yml` 复制为同目录的 `docker-compose.override.yml`（该文件名会被 Compose 自动加载，已加入 gitignore，不要提交）。`ports` 默认跨文件拼接，示例用 `ports: !override` 替换而不是追加。Docker Compose v2.21 不支持 `ports: !override`；这类主机应改该机器上的 `docker-compose.yml` 发布端口，不要使用 override 文件。10.73.2.11 的现场改写和启动注意事项见 [PORTS.md](PORTS.md)。仓库里的 `dsh.platform_public_url` 保持 `http://127.0.0.1:3001`，现场地址只写在那台机器的配置副本里。
+
 ## 查看启动状态
 
 ```bash

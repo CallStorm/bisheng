@@ -282,6 +282,11 @@ docker/.generated/
 docker/data/*
 docker/mysql/data/*
 docker/office/bisheng/*.gz
+# Compose auto-loads docker-compose.override.yml beside docker-compose.yml
+# (and at the repo root if a compose file is loaded from there). Host port
+# remaps stay untracked. Copy docker/docker-compose.override.example.yml.
+docker/docker-compose.override.yml
+docker-compose.override.yml
 
 bisheng-sync.sh
 /deploy.sh

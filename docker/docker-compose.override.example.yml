@@ -1,0 +1,31 @@
+# Example only — do not rename this file to docker-compose.override.yml in git.
+#
+# Compose auto-loads docker-compose.override.yml when you run `docker compose`
+# from this directory (next to docker-compose.yml). Copy this example to
+# docker/docker-compose.override.yml on a machine that needs different published
+# ports. That name is gitignored. docker/install.sh passes `-f docker-compose.yml`
+# explicitly, so the installer does not load an override; a plain `docker compose`
+# from docker/ does.
+#
+# Local-only override for this machine.
+#
+# Host ports 3306 and 6379 are already taken by other local stacks
+# (vnb-mysql / vnb-redis), so publish BISHENG's MySQL and Redis on
+# alternate host ports. The containers keep talking over the compose
+# network as "mysql:3306" and "redis:6379", exactly as
+# docker/bisheng/config/config.yaml expects, so nothing else changes.
+#
+# `ports` concatenates across files by default, so !override is required
+# to replace the base file's mapping instead of adding to it.
+#
+# Docker Compose v2.21 does not support `ports: !override`. On such hosts,
+# remap published ports in that host's copy of docker-compose.yml instead of
+# using an override file. See docker/PORTS.md. Do not copy this Windows
+# workstation sample onto a server that only needs different host ports.
+services:
+  mysql:
+    ports: !override
+      - "13306:3306"
+  redis:
+    ports: !override
+      - "16379:6379"
